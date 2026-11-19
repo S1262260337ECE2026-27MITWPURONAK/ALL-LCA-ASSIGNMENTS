@@ -1,1 +1,60 @@
+#include <stdio.h>
 
+int main() {
+    int choice, a, b;
+    char ch;
+
+    while (1) {
+        printf("\n1.Add  2.Sub  3.Mul  4.Div  5.Mod  6.Exit\n");
+        printf("Choice: ");
+
+        if (scanf("%d", &choice) != 1) {
+            printf("Error: Enter a number only.\n");
+            while ((ch = getchar()) != '\n' && ch != EOF);
+            continue;
+        }
+
+        if (choice == 6) {
+            printf("Bye!\n");
+            break;
+        }
+
+        if (choice < 1 || choice > 6) {
+            printf("Error: Choose 1 to 6.\n");
+            continue;
+        }
+
+        printf("Enter two numbers: ");
+        if (scanf("%d %d", &a, &b) != 2) {
+            printf("Error: Invalid numbers.\n");
+            while ((ch = getchar()) != '\n' && ch != EOF);
+            continue;
+        }
+
+        switch (choice) {
+            case 1:
+                printf("Result = %d\n", a + b);
+                break;
+            case 2:
+                printf("Result = %d\n", a - b);
+                break;
+            case 3:
+                printf("Result = %d\n", a * b);
+                break;
+            case 4:
+                if (b == 0)
+                    printf("Error: Cannot divide by zero.\n");
+                else
+                    printf("Result = %.2f\n", (float)a / b);
+                break;
+            case 5:
+                if (b == 0)
+                    printf("Error: Cannot mod by zero.\n");
+                else
+                    printf("Result = %d\n", a % b);
+                break;
+        }
+    }
+
+    return 0;
+}
